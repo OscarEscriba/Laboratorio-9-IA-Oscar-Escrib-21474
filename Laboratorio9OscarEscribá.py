@@ -151,5 +151,20 @@ hmm_model = HMM(states, observations, initial_prob, transition_prob, emission_pr
 observed_sequence = hmm_model.generate_sequence(5)
 print(f"Secuencia de observaciones generada: {observed_sequence}")
 
+# 4. Utilizar el método forward para calcular las probabilidades directas
+forward_probabilities = hmm_model.forward(observed_sequence)
+print("\nProbabilidades Forward:")
+for t, probs in enumerate(forward_probabilities):
+    print(f"Tiempo {t+1}: {probs}")
 
-# 7. Imprimir o analizar las probabilidades calculadas (ya se imprimieron)
+# 5. Utilizar el método backward para calcular las probabilidades hacia atrás
+backward_probabilities = hmm_model.backward(observed_sequence)
+print("\nProbabilidades Backward:")
+for t, probs in enumerate(backward_probabilities):
+    print(f"Tiempo {t+1}: {probs}")
+
+# 6. Utilizar el método compute_state_probabilities para calcular las probabilidades de estado
+state_probabilities = hmm_model.compute_state_probabilities(observed_sequence)
+print("\nProbabilidades de Estado (Posteriores):")
+for t, probs in enumerate(state_probabilities):
+    print(f"Tiempo {t+1}: {probs}")
